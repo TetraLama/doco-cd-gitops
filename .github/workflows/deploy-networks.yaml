@@ -2,7 +2,7 @@ name: Deploy Docker Networks- Dockform
 on: [push, workflow_dispatch]
 jobs:
   run-dockform:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Check out repository code
         uses: actions/checkout@v5
@@ -14,4 +14,4 @@ jobs:
         run: tar xvzf /tmp/dockform.tar.gz -C /tmp/
 
       - name: Run dockform to handle networks
-        run: /tmp/dockform --config ./dockform/dockform.yml apply --skip-confirmation
+        run: dockform --config ./dockform/dockform.yml apply --skip-confirmation
