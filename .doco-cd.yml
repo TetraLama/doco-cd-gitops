@@ -2,3 +2,9 @@ name: uptimekuma
 working_dir: apps/uptimekuma
 compose_files: 
   - docker-compose.yml
+---
+name: gotify
+working_dir: apps/gotify
+compose_files: 
+  - docker-compose.yml
+---
