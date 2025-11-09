@@ -12,7 +12,7 @@ services:
       - TZ=Europe/Paris  # Set the timezone (change to your preferred local timezone so monitoring times are the same)
       - UMASK=0022  # Set your file permissions manually
     networks:
-      - uptimekuma  # add your own custom network config
+      - monitoring-net  # add your own custom network config
       - gotify
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3001"]
@@ -30,7 +30,7 @@ services:
       glance.name: Uptime-Kuma
       
 networks:
-  uptimekuma:
+  monitoring-net:
     external: true
   gotify:
     external: true
