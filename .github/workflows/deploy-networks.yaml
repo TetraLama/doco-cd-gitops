@@ -14,4 +14,4 @@ jobs:
         run: tar xvzf /tmp/dockform.tar.gz -C /tmp/
 
       - name: Run dockform to handle networks
-        run: dockform --config ./dockform/dockform.yml apply --skip-confirmation
+        run: /tmp/dockform --config ./dockform/dockform.yml apply --skip-confirmation
