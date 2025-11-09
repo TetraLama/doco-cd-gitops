@@ -1,0 +1,28 @@
+services:
+  gotify:
+    container_name: gotify
+    hostname: gotify
+    image: ghcr.io/gotify/server
+    volumes:
+      - /opt/docker-data/gotify:/app/data
+    restart: unless-stopped
+    networks:
+      - arr
+      - gotify
+      - statping
+    env_file:
+      - secrets.enc.env
+    labels:
+      glance.name: Gotify
+      glance.icon: sh:gotify
+      glance.description: Notifications
+      glance.url: https://gotify.lan.prairie.ovh
+      glance.parent: monitoring
+
+networks:
+  gotify:
+    external: true
+  arr:
+    external: true
+  statping:
+    external: true
