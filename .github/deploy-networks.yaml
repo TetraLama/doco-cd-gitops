@@ -1,0 +1,17 @@
+name: Deploy Docker Networks- Dockform
+on: [push, workflow_dispatch]
+jobs:
+  run-dockform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
+
+      - run: echo "Download dockform"
+      - run: curl --output /tmp/dockform.tar.gz --location https://github.com/gcstr/dockform/releases/download/v0.6.1/dockform_v0.6.1_linux_amd64.tar.gz
+
+      - run: echo "Extract dockform binary"
+      - run: tar xvzf /tmp/dockform.tar.gz -C /tmp/
+
+      - run: echo "Run dockform to handle networks"
+      - run: /tmp/dockform --config ./dockform/dockform.yml apply --skip-confirmation

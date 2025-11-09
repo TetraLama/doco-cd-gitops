@@ -1,0 +1,11 @@
+# Dockform Configuration Template
+
+docker:
+  context: default
+  identifier: networks
+
+stacks: {}
+networks:
+  monitoring-net:
+    driver: bridge
+filesets: {}
