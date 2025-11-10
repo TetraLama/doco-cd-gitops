@@ -48,7 +48,7 @@ services:
       - /opt/docker-data/authentik/media:/media
       - /opt/docker-data/authentik/custom-templates:/templates
     env_file:
-      - .env
+      - env-authentik
       - secrets.enc.env
       - secrets.postgres.enc.env
     # ports:
@@ -87,7 +87,7 @@ services:
       - /opt/docker-data/authentik/media:/media
       - /opt/docker-data/authentik/authentik/custom-templates:/templates
     env_file:
-      - .env
+      - env-authentik
       - secrets.enc.env
       - secrets.postgres.enc.env
     depends_on:
