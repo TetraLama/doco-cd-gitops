@@ -1,0 +1,74 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+#customize: !include customize.yaml
+
+homeassistant:
+  external_url: https://ha.prairie.ovh
+  internal_url: https://ha.lan.prairie.ovh
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.21.0.0/24 # smart-home-net
+
+
+# auth_header:
+#     username_header: X-authentik-username
+
+
+# auth_header:
+#   username_header: X-authentik-username
+
+# logger:
+#     default: info
+#     logs:
+#         custom_components.auth_header: debug
+
+# # DUMMYU
+# light:
+#   - platform: template
+#     lights:
+#       dummy_light:
+#         friendly_name: "Dummy Light"
+#         turn_on:
+#           service: light.turn_on
+#           data:
+#             entity_id: light.dummy_light
+#         turn_off:
+#           service: light.turn_off
+#           data:
+#             entity_id: light.dummy_light
+
+
+###
+# PROMETHEUS
+###
+# sensor:
+#   - platform: prometheus
+#     name: Speedtest Download
+#     uri: "http://prometheus:9090"
+#     query: 'speedtest_download_bytes_per_second'
+#     unit_of_measurement: "Mbps"
+#     value_template: "{{ value | float / 1024 / 1024 }}"
+
+#   - platform: prometheus
+#     name: Speedtest Upload
+#     uri: "http://prometheus:9090"
+#     query: 'speedtest_upload_bytes_per_second'
+#     unit_of_measurement: "Mbps"
+#     value_template: "{{ value | float / 1024 / 1024 }}"
+
+#   - platform: prometheus
+#     name: Speedtest Ping
+#     uri: "http://prometheus:9090"
+#     query: 'speedtest_ping_seconds'
+#     unit_of_measurement: "ms"
+#     value_template: "{{ value | float * 1000 }}"

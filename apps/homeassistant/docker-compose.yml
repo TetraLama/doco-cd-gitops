@@ -12,6 +12,8 @@ services:
       - /run/dbus:/run/dbus:ro
       #- /mnt/data-pool/sftp:/mnt/sftp
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/automations.yaml:/config/automations.yaml
+      - ./config/configuration.yaml:/config/configuration.yaml
     #user: 1000:10001
     restart: unless-stopped
     # devices:

@@ -1,0 +1,350 @@
+- id: '1737892731360'
+  alias: Nouvelle automatisation
+  description: ''
+  triggers:
+  - trigger: event
+    event_type: zha_event
+    event_data:
+      device_ieee: 00:04:74:00:00:9e:23:86
+      endpoint_id: 1
+      command: toggle
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      device_id: 8aa3cddbfd2ca616bf4a4990e42176ca
+  - delay: 00:00:10
+  mode: single
+- id: '1737892868799'
+  alias: Wireless Button - Stairs - Stairs
+  description: ''
+  triggers:
+  - trigger: event
+    event_type: zha_event
+    event_data:
+      device_ieee: 00:04:74:00:00:9e:23:86
+      endpoint_id: 2
+      command: toggle
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      device_id: 98fc6883afe7005de000bb4f442f6e2f
+  - delay: 00:00:10
+  mode: single
+- id: '1737893772406'
+  alias: Wireless Button - Volant - Bureau
+  description: ''
+  triggers:
+  - trigger: event
+    event_type: zha_event
+    event_data:
+      device_ieee: 00:04:74:00:00:b9:32:9e
+      endpoint_id: 1
+      command: toggle
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      device_id: 8aa3cddbfd2ca616bf4a4990e42176ca
+  - delay: 00:00:10
+  mode: single
+- id: '1737893940885'
+  alias: Wireless Double Button - Fly - Living Room
+  description: ''
+  triggers:
+  - trigger: event
+    event_type: zha_event
+    event_data:
+      device_ieee: 00:04:74:00:00:b9:32:9e
+      endpoint_id: 2
+      command: toggle
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      device_id: 5d06881a0b548efaed20769d93e11c93
+  - delay: 00:00:10
+  mode: single
+- id: '1737895001591'
+  alias: Aspirateur - Semaine 8h
+  description: ''
+  triggers:
+  - trigger: time
+    at: 08:00:00
+  conditions:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  actions:
+  - action: vacuum.start
+    metadata: {}
+    data: {}
+    target:
+      device_id: 1e02bf83910aa8752d4cd37c88752fba
+  mode: single
+- id: '1737895213931'
+  alias: Aspirateur - Week End
+  description: ''
+  triggers:
+  - trigger: time
+    at: 09:00:00
+  conditions:
+  - condition: time
+    weekday:
+    - sun
+    - sat
+  actions:
+  - action: vacuum.start
+    metadata: {}
+    data: {}
+    target:
+      entity_id: vacuum.valetudo_butterycourageousdotterel
+  mode: single
+- id: '1737895309608'
+  alias: Notification - Alfred Aspire
+  description: ''
+  triggers:
+  - device_id: 1e02bf83910aa8752d4cd37c88752fba
+    domain: vacuum
+    entity_id: 1f8a0cb7073fc2e479c9246393c460f3
+    type: cleaning
+    trigger: device
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Alfred Aspire
+      title: BAT Signal - Alfred
+  mode: single
+- id: '1737895541773'
+  alias: Notification - Alfred - Retour a la base
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - vacuum.valetudo_butterycourageousdotterel
+    from:
+    to: returning
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: Alred Retourne a la base
+      title: BAT Signal - Alfred
+  mode: single
+- id: '1737895897596'
+  alias: Notification - Alfred - Error
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.valetudo_butterycourageousdotterel_error
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      title: Bat Signal - Error
+      message: Alfred remonte une erreur
+  mode: single
+- id: '1737896022392'
+  alias: Prise TV - Désactiver Matin - Semaine
+  description: ''
+  triggers:
+  - trigger: time
+    at: '10:00:00'
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 665b512cae8f01a30f407ff73214fee6
+    entity_id: 9f2c4f8c34ef92a4b2c3133e3f8fb8d9
+    domain: switch
+  mode: single
+- id: '1737897242289'
+  alias: Prise TV - Activer Soir
+  description: ''
+  triggers:
+  - trigger: time
+    at: '23:00:00'
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 665b512cae8f01a30f407ff73214fee6
+    entity_id: 9f2c4f8c34ef92a4b2c3133e3f8fb8d9
+    domain: switch
+  mode: single
+- id: '1737897291011'
+  alias: Prise TV - Activer Matin
+  description: ''
+  triggers:
+  - trigger: time
+    at: 08:00:00
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 665b512cae8f01a30f407ff73214fee6
+    entity_id: 9f2c4f8c34ef92a4b2c3133e3f8fb8d9
+    domain: switch
+  mode: single
+- id: '1737897316764'
+  alias: Prise TV - Désactiver Nuit
+  description: ''
+  triggers:
+  - trigger: time
+    at: 02:00:00
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 665b512cae8f01a30f407ff73214fee6
+    entity_id: 9f2c4f8c34ef92a4b2c3133e3f8fb8d9
+    domain: switch
+  mode: single
+- id: '1738017972793'
+  alias: 'Lumière oublié '
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - light.legrand_dimmer_switch_w_o_neutral_light_7
+    - light.legrand_dimmer_switch_w_o_neutral_light
+    - light.legrand_dimmer_switch_w_o_neutral_light_8
+    - light.legrand_dimmer_switch_w_o_neutral_light_9
+    - light.legrand_dimmer_switch_w_o_neutral_light_4
+    - light.legrand_dimmer_switch_w_o_neutral_light_3
+    - light.legrand_dimmer_switch_w_o_neutral_light_5
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+    from:
+    to: 'on'
+  conditions: []
+  actions:
+  - action: notify.notify
+    metadata: {}
+    data:
+      message: 'LUMIÈRE ALLUMÉE '
+      title: 'Bat alerte '
+  mode: single
+- id: '1742841976175'
+  alias: Double bouton Sans fli - Lumière - Bureau
+  description: ''
+  triggers:
+  - domain: mqtt
+    device_id: bc5c81e1e0c8d725c0175e22365a42c8
+    type: action
+    subtype: toggle_left
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      device_id: 0ff553103d7ff83fd2eb9ef94e1b479f
+  mode: single
+- id: '1742842171908'
+  alias: Double Bouton Sans Fil - Escalier
+  description: ''
+  triggers:
+  - domain: mqtt
+    device_id: bc5c81e1e0c8d725c0175e22365a42c8
+    type: action
+    subtype: toggle_right
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      device_id: a293ec188ab2bbb3d795c43b0d02a05c
+  mode: single
+- id: '1742842597761'
+  alias: Bouton Sans Fil - Salon
+  description: ''
+  triggers:
+  - domain: mqtt
+    device_id: 467157a3a8f5109e229017a0cdf1d8e4
+    type: action
+    subtype: toggle
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      device_id: f96145fc28a5e3803663fe086f7ef243
+  mode: single
+- id: '1742842831542'
+  alias: Bouton Sans Fil - Ikea - Evier - Allumer
+  description: ''
+  triggers:
+  - domain: mqtt
+    device_id: 302de8b99fae65e3bc7b7cf8214081e8
+    type: action
+    subtype: 'on'
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      device_id:
+      - 1c3f92c5671035e53928e07bd8178368
+      - 8a924e138304ff22f9612bee23228b8e
+  mode: single
+- id: '1742842951722'
+  alias: Bouton Sans Fil -  Ikea  - Cuisine - Eteindre
+  description: ''
+  triggers:
+  - domain: mqtt
+    device_id: 302de8b99fae65e3bc7b7cf8214081e8
+    type: action
+    subtype: 'off'
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id:
+      - 1c3f92c5671035e53928e07bd8178368
+      - 8a924e138304ff22f9612bee23228b8e
+  mode: single
+- id: '1742843817740'
+  alias: 'Bouton Sans Fil - Chambre '
+  description: ''
+  triggers:
+  - domain: mqtt
+    device_id: 8c5317ffebc3a04f15312de1c6e3e168
+    type: action
+    subtype: toggle
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      device_id: 3b8f806619baa6298b908eb6e2c6724f
+  mode: single
+  
