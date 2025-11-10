@@ -19,7 +19,4 @@ networks:
   glance-net:
     driver: bridge
 
-  dozzle-net:
-    driver: bridge
-
 filesets: {}
