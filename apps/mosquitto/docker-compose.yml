@@ -1,0 +1,21 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    hostname: mosquitto
+    restart: unless-stopped
+    volumes:
+      - ./config:/mosquitto/config
+      - /opt/docker-data/mosquitto/mosquitto:/mosquitto/data
+      - /opt/docker-data/mosquitto/log:/mosquitto/log
+    ports:
+      - 1883:1883
+    networks:
+      - smart-home-net
+    labels:
+      glance.name: Mosquitto
+      glance.parent: homeassistant
+
+networks:
+  smart-home-net:
+    external: true

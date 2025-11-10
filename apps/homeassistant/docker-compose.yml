@@ -1,0 +1,79 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    #ports:
+    #  - "8125:8123"
+      #- 1984:1984 #WebRTC
+      #- 8554:8554 #WebRTC
+    volumes:
+      - /opt/docker-data/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+      #- /mnt/data-pool/sftp:/mnt/sftp
+      - /var/run/docker.sock:/var/run/docker.sock
+    #user: 1000:10001
+    restart: unless-stopped
+    # devices:
+    #   - /dev/ttyACM0:/dev/ttyACM0
+    privileged: true
+    #network_mode: host
+    networks:
+      - smart-home-net
+    labels:
+      glance.name: Home Assistant
+      glance.icon: si:homeassistant
+      glance.url: https://ha.lan.prairie.ovh
+      glance.description: SMART Home
+      glance.id: homeassistant
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.docker.network=homeassistant"
+    #   - "traefik.http.routers.homeassistant.rule=Host(`ha.iot.jusma.fr`)"
+    #   - "traefik.http.routers.homeassistant.entrypoints=websecure"
+    #   - "traefik.http.routers.homeassistant.tls.certresolver=letsencrypt"
+    #     #- "traefik.http.routers.homeassistant.middlewares=my-crowdsec-bouncer-traefik-plugin"
+    #   # - "traefik.http.routers.homeassistant.middlewares=authentik-forward-auth@file"
+    #   # External
+    #   - "traefik.http.routers.homeassistanexternal.rule=Host(`ha.jusma.fr`)"
+    #   - "traefik.http.routers.homeassistanexternal.entrypoints=customha"
+    #   - "traefik.http.routers.homeassistanexternal.tls.certresolver=letsencrypt"
+    #   - "traefik.http.services.homeassistanexternal.loadbalancer.server.port=8123"
+    #     #- "traefik.http.routers.homeassistanexternal.middlewares=my-crowdsec-bouncer-traefik-plugin"
+    #   # - "traefik.http.routers.homeassistanexternal.middlewares=authentik-forward-auth"
+
+
+  # python-matter-server
+  # matter-server:
+  #   image: ghcr.io/home-assistant-libs/python-matter-server:stable
+  #   container_name: matter-server
+  #   restart: unless-stopped
+  #   # Required for mDNS to work correctly
+  #   network_mode: host
+  #   security_opt:
+  #     # Needed for Bluetooth via dbus
+  #     - apparmor:unconfined
+  #   volumes:
+  #     # Create an .env file that sets the USERDIR environment variable.
+  #     - ./data/matter:/data/
+  #     # Required for Bluetooth via D-Bus
+  #     - /run/dbus:/run/dbus:ro
+  #   # If you adjust command line, make sure to pass the default CMD arguments too:
+  #   #command: --storage-path /data --paa-root-cert-dir /data/credentials --bluetooth-adapter 0
+
+  # newt:
+  #   image: fosrl/newt
+  #   container_name: newt
+  #   restart: unless-stopped
+  #   environment:
+  #     - PANGOLIN_ENDPOINT=https://pangolin.lamaflix.ovh
+  #     - NEWT_ID=vw83aqh6vuma7kc
+  #     - NEWT_SECRET=7hh31sf1yqaalc948c5qohar03wbikx5yonxwmgl1oo1qkgz
+  #   networks:
+  #     - vaultwarden
+
+networks:
+  smart-home-net:
+    external: true
+  # authentik:
+  #   external: true

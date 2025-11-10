@@ -33,6 +33,16 @@ working_dir: apps/gotify
 compose_files: 
   - docker-compose.yml
 ---
+name: homeassistant
+working_dir: apps/homeassistant
+compose_files: 
+  - docker-compose.yml
+---
+name: mosquitto
+working_dir: apps/mosquitto
+compose_files: 
+  - docker-compose.yml
+---
 name: uptimekuma
 working_dir: apps/uptimekuma
 compose_files: 
