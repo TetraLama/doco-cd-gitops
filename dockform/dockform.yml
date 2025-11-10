@@ -5,7 +5,12 @@ docker:
   identifier: networks
 
 stacks: {}
+
 networks:
   monitoring-net:
     driver: bridge
+
+  auth-net:
+    driver: bridge
+
 filesets: {}
