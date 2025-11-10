@@ -1,0 +1,152 @@
+pages:
+  - name: Home
+    # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+    # hide-desktop-navigation: true
+    columns:
+      - size: small
+        widgets:
+          - type: server-stats
+            servers:
+              - type: local
+                name: Services
+
+          # - type: rss
+          #   limit: 10
+          #   collapse-after: 3
+          #   cache: 12h
+          #   feeds:
+          #     - url: https://selfh.st/rss/
+          #       title: selfh.st
+          #       limit: 4
+          #     - url: https://ciechanow.ski/atom.xml
+          #     - url: https://www.joshwcomeau.com/rss.xml
+          #       title: Josh Comeau
+          #     - url: https://samwho.dev/rss.xml
+          #     - url: https://ishadeed.com/feed.xml
+          #       title: Ahmad Shadeed
+          - type: bookmarks
+            groups:
+              - title: Monitoring
+                color: 10 70 50
+                links:
+                  - title: Uptime Kuma
+                    url: https://uptimekuma.lan.prairie.ovh
+                  - title: Glances
+                    url: https://glances.lan.prairie.ovh
+                  - title: Dozzle
+                    url: https://dozzle.lan.prairie.ovh
+              - title: Torrent
+                color: 200 50 50
+                links:
+                  - title: YGG Torrent
+                    url: https://www.yggtorrent.top
+                  - title: Qbitorrent
+                    url: https://blamo12.fox.usbx.me/qbittorrent/
+                  - title: ULTRA.CC Control Pannel
+                    url: https://cp.ultra.cc/#/login
+          - type: twitch-channels
+            channels:
+              - antoinedaniel
+              - mynthos
+              - mistermv
+              - piratesoftware
+              - clemovitch
+              - drfeelgood
+
+          - type: releases
+            cache: 1d
+            token: ${GITHUB_TOKEN}
+            show-source-icon: true
+            repositories:
+              - dockerhub:glanceapp/glance
+              - n8n-io/n8n
+              - goauthentik/authentik
+              - linuxserver/docker-sonarr
+              - linuxserver/docker-radarr
+              - glanceapp/glance
+              - home-assistant/home-assistant.io
+              - immich-app/immich        
+          
+      - size: full
+        widgets:
+          - type: docker-containers
+            hide-by-default: false
+    
+          - type: group
+            widgets:
+              - type: reddit
+                subreddit: technology
+                show-thumbnails: true
+              - type: reddit
+                subreddit: selfhosted
+                show-thumbnails: true
+              - type: reddit
+                subreddit: homelab
+                show-thumbnails: true
+              - type: reddit
+                subreddit: linux
+                show-thumbnails: true
+              - type: reddit
+                subreddit: sysadmin
+                show-thumbnails: true
+              - type: reddit
+                subreddit: devops
+                show-thumbnails: true
+              - type: reddit
+                subreddit: networking
+                show-thumbnails: true
+              - type: reddit
+                show-thumbnails: true
+                subreddit: pcgaming
+              - type: reddit
+                subreddit: games
+              - type: reddit
+                subreddit: gamingnews
+
+
+          - type: videos
+            style: grid-cards
+            collapse-after-rows: 3
+            channels:
+              - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
+              - UCdBK94H6oZT2Q7l0-b0xmMg # Short Cirtcuit
+              - UCeeFfhMcJa1kjtfZAGskOCA # Tech  Linked
+              - UCe1Aj6VEO299Yq4WkXdoD3Q # Alexander CHappel
+              - UCZXW8E1__d5tZb-wLFOt8TQ # Bog
+              - UCEZY7Tu2VOI18JVLMWMVbMA # Gamersden
+              - UC2ruguOcwnVR2_4DtiGnmLg # TheGreatReview
+              - UCNvzD7Z-g64bPXxGzaQaa4g # gameranx
+              - UCZ7AeeVbyslLM_8-nVy2B8Q # Skill Up
+              - UCHDxYLv8iovIbhrfl16CNyg # GameLinked
+              - UC9PBzalIcEQCsiIkq36PyUA # Digital Foundry
+
+          - type: group
+            widgets:
+              - type: hacker-news
+              - type: lobsters      
+  
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 24h
+
+
+          - type: calendar
+            first-day-of-week: monday 
+
+          - type: weather
+            location: Cholet, France
+            units: metric # alternatively "imperial"
+            hour-format: 24h # alternatively "24h"
+            # Optionally hide the location from being displayed in the widget
+            # hide-location: true
+
+          - type: twitch-top-games
+            limit: 20
+            collapse-after: 13
+            exclude:
+              - just-chatting
+              - pools-hot-tubs-and-beaches
+              - music
+              - art
+              - asmr

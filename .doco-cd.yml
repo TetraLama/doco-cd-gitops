@@ -13,6 +13,11 @@ working_dir: apps/frigate
 compose_files: 
   - docker-compose.yml
 ---
+name: glance
+working_dir: apps/glance
+compose_files: 
+  - docker-compose.yml
+---
 name: gotify
 working_dir: apps/gotify
 compose_files: 

@@ -16,4 +16,7 @@ networks:
   smart-home-net:
     driver: bridge
 
+  glance-net:
+    driver: bridge
+
 filesets: {}
