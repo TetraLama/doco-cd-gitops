@@ -10,7 +10,7 @@ services:
       - WEBHOOK_PATH=/gotify_webhook
       - DEFAULT_PRIORITY=5
     networks:
-      - monitoring
+      - monitoring-net
     labels:
       glance.parent: gotify-bridge
       glance.name: AlertManager
@@ -24,7 +24,7 @@ services:
       - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
     restart: unless-stopped
     networks:
-      - monitoring
+      - monitoring-net
     labels:
       glance.parent: monitoring
       glance.name: AlertManager
