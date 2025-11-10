@@ -1,0 +1,27 @@
+services:
+  census-server:
+    image: ghcr.io/selfhosters-cc/container-census:latest
+    container_name: census-server
+    restart: unless-stopped
+    group_add:
+      - "${DOCKER_GID:-999}"
+    # ports:
+    #   - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/docker-data/census:/app/data
+    env_file:
+      - secrets.enc.env
+      - env-census
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    networks:
+      - census-net
+
+networks:
+  census-net:
+    external: true

@@ -8,6 +8,11 @@ working_dir: apps/authentik
 compose_files: 
   - docker-compose.yml
 ---
+name: census
+working_dir: apps/census
+compose_files: 
+  - docker-compose.yml
+---
 name: frigate
 working_dir: apps/frigate
 compose_files: 

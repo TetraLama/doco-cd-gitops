@@ -19,4 +19,7 @@ networks:
   glance-net:
     driver: bridge
 
+  census-net:
+    driver: bridge
+
 filesets: {}
