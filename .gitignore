@@ -28,5 +28,6 @@ temp/
 *.tmp
 
 #SOPS
-*secrets.env
+*secrets*.env
+!*secrets*.enc.env
 *sops_age_key.txt
