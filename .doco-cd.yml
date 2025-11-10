@@ -10,6 +10,7 @@ compose_files:
 ---
 name: census
 working_dir: apps/census
+destroy: true
 compose_files: 
   - docker-compose.yml
 ---
