@@ -10,6 +10,7 @@ services:
       - arr
       - gotify
       - statping
+      - monitoring-net
     env_file:
       - secrets.enc.env
     labels:
@@ -25,4 +26,6 @@ networks:
   arr:
     external: true
   statping:
+    external: true
+  monitoring-net:
     external: true

@@ -1,5 +1,10 @@
-name: uptimekuma
-working_dir: apps/uptimekuma
+name: alertmanager
+working_dir: apps/alertmanager
+compose_files: 
+  - docker-compose.yml
+---
+name: authentik
+working_dir: apps/authentik
 compose_files: 
   - docker-compose.yml
 ---
@@ -8,7 +13,7 @@ working_dir: apps/gotify
 compose_files: 
   - docker-compose.yml
 ---
-name: authentik
-working_dir: apps/authentik
+name: uptimekuma
+working_dir: apps/uptimekuma
 compose_files: 
   - docker-compose.yml
