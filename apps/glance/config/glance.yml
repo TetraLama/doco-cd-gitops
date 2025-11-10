@@ -31,8 +31,6 @@ pages:
                 links:
                   - title: Uptime Kuma
                     url: https://uptimekuma.lan.prairie.ovh
-                  - title: Glances
-                    url: https://glances.lan.prairie.ovh
                   - title: Dozzle
                     url: https://dozzle.lan.prairie.ovh
               - title: Torrent
@@ -52,20 +50,6 @@ pages:
               - piratesoftware
               - clemovitch
               - drfeelgood
-
-          - type: releases
-            cache: 1d
-            token: ${GITHUB_TOKEN}
-            show-source-icon: true
-            repositories:
-              - dockerhub:glanceapp/glance
-              - n8n-io/n8n
-              - goauthentik/authentik
-              - linuxserver/docker-sonarr
-              - linuxserver/docker-radarr
-              - glanceapp/glance
-              - home-assistant/home-assistant.io
-              - immich-app/immich        
           
       - size: full
         widgets:
