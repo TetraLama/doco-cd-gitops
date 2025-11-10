@@ -10,6 +10,8 @@ services:
     #   - 8080:8080
     networks:
       - glance-net
+    env_file:
+      - secrets.enc.env
     # labels:
     #   - "traefik.enable=true"
     #   - "traefik.http.routers.glance.rule=Host(`glance.iot.jusma.fr`)"
