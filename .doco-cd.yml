@@ -23,6 +23,11 @@ working_dir: apps/glance
 compose_files: 
   - docker-compose.yml
 ---
+name: grafana
+working_dir: apps/grafana
+compose_files: 
+  - docker-compose.yml
+---
 name: gotify
 working_dir: apps/gotify
 compose_files: 

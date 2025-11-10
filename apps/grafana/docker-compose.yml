@@ -1,0 +1,23 @@
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    # ports:
+    #   - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    restart: unless-stopped
+    networks:
+      - monitoring-net
+    labels:
+      glance.name: Monitoring
+      glance.icon: si:grafana
+      glance.url: https://grafana.lan.prairie.ovh
+      glance.description: Monitoring Stack
+      glance.id: monitoring
+networks:
+  monitoring-net:
+    external: true
+
+volumes:
+  grafana_data:
