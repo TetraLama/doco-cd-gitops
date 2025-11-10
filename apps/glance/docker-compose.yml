@@ -9,7 +9,7 @@ services:
     # ports:
     #   - 8080:8080
     networks:
-      - glance
+      - glance-net
     # labels:
     #   - "traefik.enable=true"
     #   - "traefik.http.routers.glance.rule=Host(`glance.iot.jusma.fr`)"
