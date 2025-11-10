@@ -7,3 +7,8 @@ name: gotify
 working_dir: apps/gotify
 compose_files: 
   - docker-compose.yml
+---
+name: authentik
+working_dir: apps/authentik
+compose_files: 
+  - docker-compose.yml
