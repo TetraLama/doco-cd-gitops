@@ -1,0 +1,2 @@
+YOLO_MODELS=yolov7-320,yolov7x-640
+USE_FP16=false

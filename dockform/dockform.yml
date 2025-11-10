@@ -12,5 +12,8 @@ networks:
 
   auth-net:
     driver: bridge
+  
+  smart-home-net:
+    driver: bridge
 
 filesets: {}
