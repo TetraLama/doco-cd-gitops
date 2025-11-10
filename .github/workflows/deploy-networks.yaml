@@ -4,14 +4,14 @@ jobs:
   run-dockform:
     runs-on: self-hosted
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v5
+      # - name: Check out repository code
+      #   uses: actions/checkout@v5
 
-      - name: Download dockform
-        run: curl --output /tmp/dockform.tar.gz --location https://github.com/gcstr/dockform/releases/download/v0.6.1/dockform_v0.6.1_linux_amd64.tar.gz
+      # - name: Download dockform
+      #   run: curl --output /tmp/dockform.tar.gz --location https://github.com/gcstr/dockform/releases/download/v0.6.1/dockform_v0.6.1_linux_amd64.tar.gz
 
-      - name: Extract dockform binary
-        run: tar xvzf /tmp/dockform.tar.gz -C /tmp/
+      # - name: Extract dockform binary
+      #   run: tar xvzf /tmp/dockform.tar.gz -C /tmp/
 
       - name: Run dockform to handle networks
-        run: /tmp/dockform --config ./dockform/dockform.yml apply --skip-confirmation
+        run: /usr/local/bin/dockform --config ./dockform/dockform.yml apply --skip-confirmation
