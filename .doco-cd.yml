@@ -47,3 +47,8 @@ name: uptimekuma
 working_dir: apps/uptimekuma
 compose_files: 
   - docker-compose.yml
+---
+name: zigbee2mqtt
+working_dir: apps/zigbee2mqtt
+compose_files: 
+  - docker-compose.yml

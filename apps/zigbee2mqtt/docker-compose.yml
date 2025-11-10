@@ -1,0 +1,30 @@
+services:
+   zigbee2mqtt:
+      container_name: zigbee2mqtt
+      restart: unless-stopped
+      image: ghcr.io/koenkk/zigbee2mqtt
+      networks:
+        - smart-home-net
+      volumes:
+          - /opt/docker-data/zigbee2mqtta:/app/data
+          - /run/udev:/run/udev:ro
+      # ports:
+      #     - 8080:8080
+      environment:
+          - TZ=Europe/Paris
+      devices:
+        - /dev/ttyACM0:/dev/ttyACM1
+      labels:
+        glance.name: Zigbee2MQTT
+        glance.parent: homeassistant
+      # labels:
+      # - "traefik.enable=true"
+      # - "traefik.http.routers.zigbee2mqtt.rule=Host(`zigbee2mqtt.iot.jusma.fr`)"
+      # - "traefik.http.routers.zigbee2mqtt.entrypoints=websecure"
+      # - "traefik.http.routers.zigbee2mqtt.tls=true"
+      # - "traefik.http.routers.zigbee2mqtt.tls.certresolver=letsencrypt"
+      # - "traefik.http.services.zigbee2mqtt.loadbalancer.server.port=8080"
+
+networks:
+  smart-home-net:
+    external: true
