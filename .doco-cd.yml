@@ -8,9 +8,8 @@ working_dir: apps/authentik
 compose_files: 
   - docker-compose.yml
 ---
-name: census
-working_dir: apps/census
-destroy: true
+name: dozzle
+working_dir: apps/dozzle
 compose_files: 
   - docker-compose.yml
 ---
