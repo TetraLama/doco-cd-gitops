@@ -8,6 +8,11 @@ working_dir: apps/authentik
 compose_files: 
   - docker-compose.yml
 ---
+name: frigate
+working_dir: apps/frigate
+compose_files: 
+  - docker-compose.yml
+---
 name: gotify
 working_dir: apps/gotify
 compose_files: 
