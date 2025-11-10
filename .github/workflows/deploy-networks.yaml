@@ -4,8 +4,8 @@ jobs:
   run-dockform:
     runs-on: self-hosted
     steps:
-      # - name: Check out repository code
-      #   uses: actions/checkout@v5
+      - name: Check out repository code
+        uses: actions/checkout@v5
 
       # - name: Download dockform
       #   run: curl --output /tmp/dockform.tar.gz --location https://github.com/gcstr/dockform/releases/download/v0.6.1/dockform_v0.6.1_linux_amd64.tar.gz
