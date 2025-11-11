@@ -7,19 +7,22 @@ docker:
 stacks: {}
 
 networks:
-  monitoring-net:
-    driver: bridge
-
   auth-net:
     driver: bridge
-  
-  smart-home-net:
+
+  dozzle-net:
     driver: bridge
 
   glance-net:
     driver: bridge
 
-  dozzle-net:
+  immich-net:
+    driver: bridge
+
+  monitoring-net:
+    driver: bridge
+  
+  smart-home-net:
     driver: bridge
 
 filesets: {}

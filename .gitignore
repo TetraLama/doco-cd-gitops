@@ -2,6 +2,12 @@
 .env
 .env.local
 .env.*.local
+# Exclure les fichiers secrets*.env
+secrets*.env
+
+# Mais inclure les fichiers secrets*.enc.env (le ! inverse l'exclusion)
+!secrets*.enc.env
+
 
 # Docker volumes and data
 data/
@@ -28,6 +34,4 @@ temp/
 *.tmp
 
 #SOPS
-*secrets*.env
-!*secrets*.enc.env
 *sops_age_key.txt

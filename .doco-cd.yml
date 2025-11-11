@@ -38,6 +38,11 @@ working_dir: apps/homeassistant
 compose_files: 
   - docker-compose.yml
 ---
+name: immich
+working_dir: apps/immich
+compose_files: 
+  - docker-compose.yml
+---
 name: mosquitto
 working_dir: apps/mosquitto
 compose_files: 
