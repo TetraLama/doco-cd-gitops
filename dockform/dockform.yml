@@ -21,6 +21,9 @@ networks:
 
   kavita-net:
     driver: bridge
+  
+  komga-net:
+    driver: bridge
 
   monitoring-net:
     driver: bridge
