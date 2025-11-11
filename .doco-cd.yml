@@ -68,6 +68,11 @@ working_dir: apps/mosquitto
 compose_files: 
   - docker-compose.yml
 ---
+name: nextcloud
+working_dir: apps/nextcloud
+compose_files: 
+  - docker-compose.yml
+---
 name: node-exporter
 working_dir: apps/node-exporter
 compose_files: 

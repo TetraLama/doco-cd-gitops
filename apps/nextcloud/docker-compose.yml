@@ -1,0 +1,90 @@
+services:
+  nextcloud-db:
+    image: mariadb:10.11
+    container_name: nextcloud-db
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - /opt/docker-data/nextcloud/db:/var/lib/mysql
+    env_file:
+      - secrets.mariadb.enc.env
+    labels:
+      glance.name: MariaDB
+      glance.parent: nextcloud
+
+  nextcloud-redis:
+    image: redis:7-alpine
+    container_name: nextcloud-redis
+    restart: unless-stopped
+    labels:
+      glance.name: Redis
+      glance.parent: nextcloud
+
+  nextcloud:
+    image: nextcloud:stable-apache
+    container_name: nextcloud
+    restart: unless-stopped
+    # ports:
+    #   - "8080:80"  # Expose on port 8080 for Caddy reverse proxy
+    volumes:
+      - /opt/docker-data/nextcloud/nextcloud:/var/www/html
+      - /opt/docker-data/nextcloud/config:/var/www/html/config
+      - /opt/docker-data/nextcloud/custom_apps:/var/www/html/custom_apps
+      - /mnt/zfs/lamapound/docs/nextcloud:/var/www/html/data:/var/www/html/data
+      - /opt/docker-data/nextcloud/themes:/var/www/html/themes
+    env_file:
+      - nextcloud.env
+      - secrets.nextcloud.enc.env
+      - secrets.mariadb.enc.env
+      
+    depends_on:
+      - nextcloud-db
+      - nextcloud-redis
+    networks:
+      - nextcloud-net
+      - default
+    labels:
+      glance.name: Next Cloud
+      glance.icon: si:nextcloud
+      glance.url: https://docs.prairie.ovh
+      glance.description: Local Drive
+      glance.id: nextcloud
+  
+  nextcloud-cron:
+    image: nextcloud:stable-apache
+    container_name: nextcloud-cron
+    restart: unless-stopped
+    volumes:
+      - /opt/docker-data/nextcloud:/var/www/html
+      - /opt/docker-data/nextcloud/config:/var/www/html/config
+      - /opt/docker-data/nextcloud/custom_apps:/var/www/html/custom_apps
+      - /opt/docker-data/nextcloud/themes:/var/www/html/themes
+      - /mnt/zfs/lamapound/docs/nextcloud:/var/www/html/data:/var/www/html/data
+    entrypoint: /cron.sh
+    depends_on:
+      - nextcloud-db
+      - nextcloud-redis
+    labels:
+      glance.name: Cron
+      glance.parent: nextcloud
+
+  collabora:
+    image: collabora/code:latest
+    container_name: collabora
+    restart: unless-stopped
+    # ports:
+    #   - "9980:9980"  # Expose on port 9980 for Caddy reverse proxy
+    env_file:
+      - collabora.env
+      - secrets.collabora.enc.env
+    networks:
+      - nextcloud-net
+      - default
+    labels:
+      glance.name: Collabora
+      glance.parent: nextcloud
+
+networks:
+  nextcloud-net:
+    external: true
+  default:
