@@ -1,0 +1,44 @@
+services:
+  jellystat:
+    image: cyfershepard/jellystat:latest
+    container_name: jellystat
+    restart: unless-stopped
+    env_file:
+      - secrets.jellystat.enc.env
+      - secrets.postgres.enc.env
+      - jellystat.env
+    volumes:
+      - jellystat-backup-data:/app/backend/backup-data
+    # ports:
+    #   - "127.0.0.1:3000:3000"
+    depends_on:
+      - jellystat-db
+    networks:
+      - jellyfin-net
+      - default
+    labels:
+      glance.name: jellystat
+      glance.parent: jellyfin
+
+  jellystat-db:
+    image: postgres:15.2
+    shm_size: '1gb'
+    container_name: jellystat-db
+    restart: unless-stopped
+    env_file:
+      - secrets.postgres.enc.env
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    labels:
+      glance.name: jellystat-db
+      glance.parent: jellyfin
+
+networks:
+  jellyfin-net:
+    external: true
+  default:
+
+volumes:
+  postgres-data:
+  jellystat-backup-data:
+
