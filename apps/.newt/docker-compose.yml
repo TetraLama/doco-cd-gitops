@@ -1,0 +1,20 @@
+services:
+  newt:
+    image: fosrl/newt
+    container_name: newt
+    restart: unless-stopped
+    networks:
+      - smart-home-net
+      - immich-net
+      - jellyfin-net
+    labels:
+      glance.name: Newt
+      glance.parent: vpn
+
+networks:
+  jellyfin-net:
+    external: true
+  immich-net:
+    external: true
+  smart-home-net:
+    external: true
