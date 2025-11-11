@@ -4,16 +4,9 @@ services:
     image: gotson/komga
     container_name: komga
     volumes:
-      - type: bind
-        source: /opt/docker-data/komga
-        target: /config
-      - type: bind
-        source: /mnt/zfs/lamapound
-        target: /data
-      - type: bind
-        source: /etc/timezone #alternatively you can use a TZ environment variable, like TZ=Europe/London
-        target: /etc/timezone
-        read_only: true
+      - /opt/docker-data/komga:/config
+      - /mnt/zfs/lamapound:/data
+      - /etc/timezone:/etc/timezone:ro #alternatively you can use a TZ environment variable, like TZ=Europe/London
     # ports:
     #   - 25600:25600
     user: "1000:1000"
