@@ -13,6 +13,12 @@ sops:
       - age13t99gmn3yhrzdjnhxmerue388frhrwatuj3e045lf5frxdqjputsugx7hf # Mac
 
 stacks:
+  dozzle:
+    root: apps/dozzle
+    files:
+      - docker-compose.yml
+    env-file: []
+
   komga:
     root: apps/komga
     files:
