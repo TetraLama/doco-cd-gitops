@@ -43,6 +43,11 @@ working_dir: apps/immich
 compose_files: 
   - docker-compose.yml
 ---
+name: kavita
+working_dir: apps/kavita
+compose_files: 
+  - docker-compose.yml
+---
 name: mosquitto
 working_dir: apps/mosquitto
 compose_files: 

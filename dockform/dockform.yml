@@ -19,6 +19,9 @@ networks:
   immich-net:
     driver: bridge
 
+  kavita-net:
+    driver: bridge
+
   monitoring-net:
     driver: bridge
   

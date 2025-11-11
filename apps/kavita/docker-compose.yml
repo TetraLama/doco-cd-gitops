@@ -1,0 +1,27 @@
+services:
+    kavita:
+        image: jvmilazz0/kavita:latest    # Using the stable branch from the official dockerhub repo.
+        container_name: kavita
+        volumes:
+            - /mnt/zfs/lamapound/medias/mangas:/manga
+            - /mnt/zfs/lamapound/medias/comics:/comics
+            - /mnt/zfs/lamapound/medias/books:/books
+            - /opt/docker-data/kavita:/kavita/config     # /kavita/config must not be changed
+        environment:
+            - TZ=Europe/Paris
+        # ports:
+        #     - "5000:5000"
+        restart: unless-stopped
+        networks:
+          - kavita-net
+        labels:
+          glance.name: Kavita
+          glance.icon: sh:kavita
+          glance.url: https://kavita.lan.prairie.ovh
+          glance.description: Ebook Reader
+          glance.category: media
+
+
+networks:
+  kavita-net:
+    external: true
