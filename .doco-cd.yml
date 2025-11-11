@@ -48,6 +48,12 @@ working_dir: apps/kavita
 compose_files: 
   - docker-compose.yml
 ---
+name: komga
+working_dir: apps/komga
+destroy: true
+compose_files: 
+  - docker-compose.yml
+---
 name: mosquitto
 working_dir: apps/mosquitto
 compose_files: 
