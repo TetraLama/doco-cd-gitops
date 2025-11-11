@@ -20,6 +20,14 @@ stacks:
     files:
       - docker-compose.yml
     env-file: []
+  
+  newt:
+    root: apps/newt
+    files:
+      - docker-compose.yml
+    secrets:
+      sops:
+        - apps/newt/secrets.enc.env
 
 networks:
   auth-net:
