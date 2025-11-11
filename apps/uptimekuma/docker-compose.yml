@@ -13,7 +13,6 @@ services:
       - UMASK=0022  # Set your file permissions manually
     networks:
       - monitoring-net  # add your own custom network config
-      - gotify
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3001"]
       interval: 30s
@@ -31,6 +30,4 @@ services:
       
 networks:
   monitoring-net:
-    external: true
-  gotify:
     external: true
