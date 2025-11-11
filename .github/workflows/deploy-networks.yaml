@@ -14,5 +14,5 @@ jobs:
       #   run: tar xvzf /tmp/dockform.tar.gz -C /tmp/
 
       - name: Run dockform
-        run:  export AGE_KEY_FILE=${{ secrets.AGE_KEY_FILE }} && \
+        run: set -x AGE_KEY_FILE ${{ secrets.AGE_KEY_FILE }}
           /usr/local/bin/dockform --config ./dockform.yml apply --skip-confirmation
