@@ -3,8 +3,6 @@ services:
     image: fosrl/newt
     container_name: newt
     restart: unless-stopped
-    environment:
-      - PANGOLIN_ENDPOINT=https://pangolin.prairie.ovh
     networks:
       - smart-home-net
       - immich-net
