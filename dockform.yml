@@ -31,7 +31,7 @@ stacks:
       - docker-compose.yml
     secrets:
       sops:
-        - apps/newt/secrets.enc.env
+        - secrets.enc.env
 
 networks:
   auth-net:
