@@ -15,6 +15,9 @@ sops:
 stacks: {}
 
 networks:
+  arr-net:
+    driver: bridge
+
   auth-net:
     driver: bridge
 

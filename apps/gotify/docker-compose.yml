@@ -7,9 +7,6 @@ services:
       - /opt/docker-data/gotify:/app/data
     restart: unless-stopped
     networks:
-      - arr
-      - gotify
-      - statping
       - monitoring-net
     env_file:
       - secrets.enc.env
@@ -21,11 +18,5 @@ services:
       glance.parent: monitoring
 
 networks:
-  gotify:
-    external: true
-  arr:
-    external: true
-  statping:
-    external: true
   monitoring-net:
     external: true
