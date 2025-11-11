@@ -2,9 +2,17 @@
 
 docker:
   context: default
-  identifier: networks
+  identifier: apps
 
-stacks: {}
+sops:
+  age:
+    key_file: ${AGE_KEY_FILE}
+
+stacks:
+  komga:
+    working_dir: apps/komga
+    compose_files:
+      - docker-compose.yml
 
 networks:
   auth-net:

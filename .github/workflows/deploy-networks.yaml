@@ -13,5 +13,6 @@ jobs:
       # - name: Extract dockform binary
       #   run: tar xvzf /tmp/dockform.tar.gz -C /tmp/
 
-      - name: Run dockform to handle networks
-        run: /usr/local/bin/dockform --config ./dockform/dockform.yml apply --skip-confirmation
+      - name: Run dockform
+        run:  export AGE_KEY_FILE=${{ secrets.AGE_KEY_FILE }} &&\
+          /usr/local/bin/dockform --config ./dockform.yml apply --skip-confirmation
