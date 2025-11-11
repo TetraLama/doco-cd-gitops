@@ -6,7 +6,7 @@ services:
     # ports:
     #   - "8080:8080"
     networks:
-      - termix
+      - termix-net
     volumes:
       - /opt/docker-data/termix:/app/data
     environment:
