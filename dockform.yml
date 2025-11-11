@@ -14,6 +14,12 @@ stacks:
     files:
       - docker-compose.yml
     env-file: []
+  
+  jellyfin:
+    root: apps/jellyfin
+    files:
+      - docker-compose.yml
+    env-file: []
 
 networks:
   auth-net:
@@ -26,6 +32,9 @@ networks:
     driver: bridge
 
   immich-net:
+    driver: bridge
+
+  jellyfin-net:
     driver: bridge
 
   kavita-net:
