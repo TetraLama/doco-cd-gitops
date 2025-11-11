@@ -48,9 +48,6 @@ networks:
   smart-home-net:
     driver: bridge
 
-  nextcloud-net:
-    driver: bridge
-
   termix-net:
     driver: bridge
 
