@@ -6,6 +6,7 @@ docker:
 
 sops:
   age:
+    key_file: ${AGE_KEY_FILE}
     recipients:
       - age175k3vjqs69ztksspwnvky2u9qvuxvydw52wpp3hrsh47lnkpq32qw2g3jn #Computer
       - age1dd6x6rank7eyff7kg3fhs40k8307255d07fpe5nqlu54e8ejwccscw09kx # Server
