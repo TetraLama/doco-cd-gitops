@@ -48,6 +48,11 @@ working_dir: apps/jellyfin
 compose_files: 
   - docker-compose.yml
 ---
+name: jellystat
+working_dir: apps/jellystat
+compose_files: 
+  - docker-compose.yml
+---
 name: kavita
 working_dir: apps/kavita
 compose_files: 
