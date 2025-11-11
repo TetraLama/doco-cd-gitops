@@ -1,0 +1,51 @@
+---
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:10.11.0
+    container_name: jellyfin
+    hostname: jellyfin
+    user: 1000:1001
+    restart: unless-stopped
+    volumes:
+      - /mnt/zfs/lamapound:/mnt/zfs/lamapound
+      - /opt/docker-data/jellyfin/config:/config
+      - /opt/docker-data/jellyfin/cache:/cache
+    runtime: nvidia
+    #ports:
+    #  - 8096
+    networks:
+     - jellyfin-net
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    labels:
+      glance.name: Jellyfin
+      glance.icon: si:jellyfin
+      glance.url: https://lamaflix.lan.prairie.ovh
+      glance.description: Animes / TV Shows / Movies
+      glance.id: jellyfin
+      glance.category: media
+
+  # custom-images:
+  #   image: nginx:alpine
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./images:/usr/share/nginx/html:ro
+  #   networks:
+  #     - jellyfin
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.customjellyfin.rule=Host(`custom-images.iot.jusma.fr`)"
+  #     - "traefik.http.routers.customjellyfin.entrypoints=websecure"
+  #     - "traefik.http.routers.customjellyfin.tls=true"
+  #     - "traefik.http.routers.customjellyfin.tls.certresolver=letsencrypt"
+  #     - "traefik.http.services.customjellyfin.loadbalancer.server.port=80"
+
+
+networks:
+  jellyfin-net:
+    external: true
