@@ -42,10 +42,16 @@ networks:
   monitoring-net:
     driver: bridge
   
+  nextcloud-net:
+    driver: bridge
+  
   smart-home-net:
     driver: bridge
 
   nextcloud-net:
+    driver: bridge
+
+  termix-net:
     driver: bridge
 
 filesets: {}
