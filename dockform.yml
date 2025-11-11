@@ -12,32 +12,7 @@ sops:
       - age1dd6x6rank7eyff7kg3fhs40k8307255d07fpe5nqlu54e8ejwccscw09kx # Server
       - age13t99gmn3yhrzdjnhxmerue388frhrwatuj3e045lf5frxdqjputsugx7hf # Mac
 
-stacks:
-  dozzle:
-    root: apps/dozzle
-    files:
-      - docker-compose.yml
-    env-file: []
-
-  komga:
-    root: apps/komga
-    files:
-      - docker-compose.yml
-    env-file: []
-  
-  jellyfin:
-    root: apps/jellyfin
-    files:
-      - docker-compose.yml
-    env-file: []
-  
-  newt:
-    root: apps/newt
-    files:
-      - docker-compose.yml
-    secrets:
-      sops:
-        - secrets.env
+stacks: {}
 
 networks:
   auth-net:
@@ -65,6 +40,9 @@ networks:
     driver: bridge
   
   smart-home-net:
+    driver: bridge
+
+  nextcloud-net:
     driver: bridge
 
 filesets: {}
