@@ -10,9 +10,10 @@ sops:
 
 stacks:
   komga:
-    working_dir: apps/komga
-    compose_files:
+    root: apps/komga
+    files:
       - docker-compose.yml
+    env-files: []
 
 networks:
   auth-net:
