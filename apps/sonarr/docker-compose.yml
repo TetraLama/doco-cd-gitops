@@ -1,0 +1,34 @@
+---
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    #image: ubuntu
+    container_name: sonarr
+    hostname: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TZ=Europe/Paris
+    volumes:
+      - /mnt/zfs/lamapound:/mnt/zfs/lamapound #optional
+      - /mnt/sshfs/ultra:/home/blamo12
+      - /opt/docker-data/sonarr:/config
+      #- ./data:/mnt/old
+    # ports:
+    #   - 8989:8989
+    restart: unless-stopped
+    networks:
+      - arr-net
+      - auth-net
+    labels:
+      glance.name: Sonarr
+      glance.icon: si:sonarr
+      glance.url: https://sonarr.lan.prairie.ovh
+      glance.description: TV Show and Anime metadata
+      glance.id: sonarr
+
+networks:
+  arr-net:
+    external: true
+  auth-net:
+    external: "true"

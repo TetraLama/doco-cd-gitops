@@ -63,6 +63,16 @@ working_dir: apps/mosquitto
 compose_files: 
   - docker-compose.yml
 ---
+name: radarr
+working_dir: apps/radarr
+compose_files: 
+  - docker-compose.yml
+---
+name: sonarr
+working_dir: apps/sonarr
+compose_files: 
+  - docker-compose.yml
+---
 name: uptimekuma
 working_dir: apps/uptimekuma
 compose_files: 
