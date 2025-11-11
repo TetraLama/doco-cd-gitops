@@ -21,7 +21,7 @@ services:
     # ports:
     #   - "9093:9093"
     volumes:
-      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - ./config/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     restart: unless-stopped
     networks:
       - monitoring-net

@@ -1,0 +1,25 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./config/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - prometheus_data:/prometheus
+      - /dev:/dev
+    # ports:
+    #   - "9090:9090"
+    restart: unless-stopped
+    networks:
+      - monitoring-net
+    labels:
+      glance.parent: monitoring
+      glance.name: Prometheus
+
+
+networks:
+  monitoring-net:
+    external: true
+
+volumes:
+  prometheus_data:

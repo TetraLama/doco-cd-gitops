@@ -63,6 +63,16 @@ working_dir: apps/mosquitto
 compose_files: 
   - docker-compose.yml
 ---
+name: node-exporter
+working_dir: apps/node-exporter
+compose_files: 
+  - docker-compose.yml
+---
+name: prometheus
+working_dir: apps/prometheus
+compose_files: 
+  - docker-compose.yml
+---
 name: radarr
 working_dir: apps/radarr
 compose_files: 

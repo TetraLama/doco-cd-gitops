@@ -1,0 +1,86 @@
+groups:
+  - name: BackupAlerts
+    rules:
+      - alert: ResticBackupFailed
+        expr: restic_backup_success == 0
+        for: 10m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Last Restik Backup have failed"
+          description: "Last automatic backup from restic have failed"
+
+      - alert: ResticBackupTooOld
+        expr: time() - restic_backup_time_seconds == 0
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "No RESTIC backup in the last 24h"
+          description: "No backup was found in the last 24h"
+
+  - name: SystemAlerts
+    rules:
+
+      - alert: HostDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Hôte {{ $labels.instance }} injoignable"
+          description: "Prometheus ne peut plus scraper {{ $labels.instance }} depuis 1m."
+
+      - alert: HighCPUUsage
+        expr: avg(rate(node_cpu_seconds_total{mode="user"}[1m])) by (instance) > 0.85
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Utilisation CPU élevée sur {{ $labels.instance }}"
+          description: "La charge CPU est supérieure à 85%."
+
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.9
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Mémoire presque saturée sur {{ $labels.instance }}"
+          description: "Plus de 90% de la mémoire est utilisée."
+
+      - alert: DiskFull
+        expr: (node_filesystem_avail_bytes{fstype!="tmpfs",fstype!="overlay"} / node_filesystem_size_bytes{fstype!="tmpfs",fstype!="overlay"}) < 0.10
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Disque presque plein sur {{ $labels.instance }}"
+          description: "Moins de 10% d’espace disque libre sur {{ $labels.mountpoint }}."
+
+      - alert: DiskReadErrors
+        expr: rate(node_disk_errors_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Erreurs de lecture disque sur {{ $labels.device }}"
+          description: "Des erreurs de lecture disque ont été détectées."
+
+      - alert: ZFSPoolDegraded
+        expr: zfs_pool_health{state!="ONLINE"} == 1
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Pool ZFS {{ $labels.pool }} dégradé"
+          description: "Le pool est dans l'état {{ $labels.state }}"
+
+      - alert: HighCPUTemp
+        expr: node_hwmon_temp_celsius > 75
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Température CPU élevée"
+          description: "Le CPU dépasse 75°C."
