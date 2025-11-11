@@ -1,0 +1,24 @@
+services:
+  tailscale:
+    image: tailscale/tailscale:latest
+    hostname: ts-zserv
+    container_name: ts-zserv
+    restart: unless-stopped
+    environment:
+      #- TS_EXTRA_ARGS=--advertise-tags=tag:server --advertise-routes=192.168.100.0/22,192.168.202.0/24
+      - TS_EXTRA_ARGS=--advertise-tags=tag:server
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=false
+    env_file:
+      - secrets.tailscale.enc.env
+    volumes:
+      - ./data/state:/var/lib/tailscale
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+    labels:
+      glance.name: Tailscale
+      glance.icon: si:tailscale
+      glance.description: VPN
+      glance.id: vpn

@@ -88,6 +88,16 @@ working_dir: apps/sonarr
 compose_files: 
   - docker-compose.yml
 ---
+name: tailscale
+working_dir: apps/tailscale
+compose_files: 
+  - docker-compose.yml
+---
+name: termix
+working_dir: apps/termix
+compose_files: 
+  - docker-compose.yml
+---
 name: uptimekuma
 working_dir: apps/uptimekuma
 compose_files: 
