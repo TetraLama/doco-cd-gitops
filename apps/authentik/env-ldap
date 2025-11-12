@@ -1,2 +1,2 @@
-AUTHENTIK_HOST="https://authentik.lan.prairie.ovh"
-AUTHENTIK_INSECURE="false"
+AUTHENTIK_HOST="http://authentik-server:9000"
+AUTHENTIK_INSECURE="true"
