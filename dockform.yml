@@ -44,6 +44,9 @@ networks:
   
   nextcloud-net:
     driver: bridge
+
+  opencloud-net:
+    driver: bridge
   
   smart-home-net:
     driver: bridge
