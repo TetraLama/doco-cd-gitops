@@ -63,11 +63,6 @@ working_dir: apps/komga
 compose_files: 
   - docker-compose.yml
 ---
-name: homeassistant
-working_dir: apps/homeassistant
-compose_files: 
-  - docker-compose.yml
----
 name: mosquitto
 working_dir: apps/mosquitto
 compose_files: 
