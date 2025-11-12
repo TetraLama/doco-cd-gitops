@@ -38,6 +38,9 @@ networks:
   
   komga-net:
     driver: bridge
+    
+  linkwarden-net:
+    driver: bridge
 
   monitoring-net:
     driver: bridge
