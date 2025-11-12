@@ -54,7 +54,7 @@ services:
     - /opt/docker-data/authentik/certs:/certs
     - /opt/docker-data/authentik/custom-templates:/templates
 
-  authentik_ldap:
+  authentik-ldap:
         image: ghcr.io/goauthentik/ldap
         # Optionally specify the container's network, which must be able to reach the core authentik server.
         # networks:
