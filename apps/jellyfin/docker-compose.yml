@@ -15,6 +15,7 @@ services:
     #  - 8096
     networks:
      - jellyfin-net
+     - auth-net
     deploy:
       resources:
         reservations:
@@ -48,4 +49,6 @@ services:
 
 networks:
   jellyfin-net:
+    external: true
+  auth-net:
     external: true
