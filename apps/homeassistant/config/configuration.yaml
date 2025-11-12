@@ -17,7 +17,7 @@ homeassistant:
 http:
   use_x_forwarded_for: true
   trusted_proxies:
-    - 172.21.0.0/24 # smart-home-net
+    - 172.25.0.0/24 # smart-home-net
 
 
 # auth_header:
