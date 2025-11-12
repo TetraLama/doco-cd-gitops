@@ -62,6 +62,8 @@ services:
         ports:
             - 389:3389
             - 636:6636
+        networks:
+          - auth-net
         env_file:
             - secrets.ldap.enc.env
             - env-ldap
