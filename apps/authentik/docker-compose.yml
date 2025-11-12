@@ -54,6 +54,20 @@ services:
     - /opt/docker-data/authentik/certs:/certs
     - /opt/docker-data/authentik/custom-templates:/templates
 
+  authentik_ldap:
+        image: ghcr.io/goauthentik/ldap
+        # Optionally specify the container's network, which must be able to reach the core authentik server.
+        # networks:
+        #   - foo
+        ports:
+            - 389:3389
+            - 636:6636
+        env_file:
+            - secrets.ldap.enc.env
+            - env-ldap
+            
+            
+
 volumes:
   pg_database:
     driver: local

@@ -1,0 +1,2 @@
+AUTHENTIK_HOST=https://authentik.lan.prairie.ovh
+AUTHENTIK_INSECURE="false"
