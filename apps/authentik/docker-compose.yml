@@ -1,109 +1,64 @@
----
-
 services:
   postgresql:
+    env_file:
+    - secrets.postgres.enc.env
+    healthcheck:
+      interval: 30s
+      retries: 5
+      start_period: 20s
+      test:
+      - CMD-SHELL
+      - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      timeout: 5s
     image: docker.io/library/postgres:16-alpine
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
-      start_period: 20s
-      interval: 30s
-      retries: 5
-      timeout: 5s
     volumes:
-      - pg_data:/var/lib/postgresql/data
-    env_file:
-      - secrets.postgres.enc.env
-    labels:
-      glance.parent: authentik
-      glance.name: Postgres
+    - pg_database:/var/lib/postgresql/data
 
-  redis:
-    image: docker.io/library/redis:alpine
-    command: --save 60 1 --loglevel warning
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
-      start_period: 20s
-      interval: 30s
-      retries: 5
-      timeout: 3s
-    volumes:
-      - redis_data:/data
-    labels:
-      glance.parent: authentik
-      glance.name: Redis
-
-  auth-server:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2025.6.0}
-    restart: unless-stopped
+  authentik-server:
     command: server
-    environment:
-      AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_POSTGRESQL__HOST: postgresql
-    networks:
-      - default
-      - auth-net
-    volumes:
-      - /opt/docker-data/authentik/media:/media
-      - /opt/docker-data/authentik/custom-templates:/templates
-    env_file:
-      - env-authentik
-      - secrets.enc.env
-      - secrets.postgres.enc.env
-    # ports:
-    #   - "${COMPOSE_PORT_HTTP:-9000}:9000"
-    #   - "${COMPOSE_PORT_HTTPS:-9443}:9443"
     depends_on:
       postgresql:
         condition: service_healthy
-      redis:
-        condition: service_healthy
-    labels:
-      glance.name: Authentik
-      glance.icon: si:authentik
-      glance.url: https://authentik.lan.prairie.ovh
-      glance.description: Auth Manager and SSO
-      glance.id: authentik
-
-  worker:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2025.6.0}
+    env_file:
+    - secrets.authentik.enc.env
+    - secrets.postgres.enc.env
+    - env-authentik
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2025.10.1}
+    # ports:
+    # - ${COMPOSE_PORT_HTTP:-9000}:9000
+    # - ${COMPOSE_PORT_HTTPS:-9443}:9443
     restart: unless-stopped
-    command: worker
-    environment:
-      AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_POSTGRESQL__HOST: postgresql
+    networks:
+      - auth-net
+      - default
+    volumes:
+    - /opt/docker-data/authentik/media:/media
+    - /opt/docker-data/authentik/custom-templates:/templates
 
-    # `user: root` and the docker socket volume are optional.
-    # See more for the docker socket integration here:
-    # https://goauthentik.io/docs/outposts/integrations/docker
-    # Removing `user: root` also prevents the worker from fixing the permissions
-    # on the mounted folders, so when removing this make sure the folders have the correct UID/GID
-    # (1000:1000 by default)
+  authentik-worker:
+    command: worker
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    env_file:
+      - secrets.authentik.enc.env
+      - secrets.postgres.enc.env
+      - env-authentik
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2025.10.1}
+    restart: unless-stopped
     user: root
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /opt/docker-data/authentik/certs:/certs
-      - /opt/docker-data/authentik/media:/media
-      - /opt/docker-data/authentik/authentik/custom-templates:/templates
-    env_file:
-      - env-authentik
-      - secrets.enc.env
-      - secrets.postgres.enc.env
-    depends_on:
-      postgresql:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    labels:
-      glance.parent: authentik
-      glance.name: Worker
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /opt/docker-data/authentik/media:/media
+    - /opt/docker-data/authentik/certs:/certs
+    - /opt/docker-data/authentik/custom-templates:/templates
+
+volumes:
+  pg_database:
+    driver: local
 
 networks:
   default:
   auth-net:
     external: true
-
-volumes:
-  pg_data:
-  redis_data:
