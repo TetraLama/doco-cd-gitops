@@ -9,6 +9,7 @@ services:
     restart: unless-stopped
     networks:
       - monitoring-net
+      - auth-net
     labels:
       glance.name: Monitoring
       glance.icon: si:grafana
@@ -17,6 +18,8 @@ services:
       glance.id: monitoring
 networks:
   monitoring-net:
+    external: true
+  auth-net:
     external: true
 
 volumes:
