@@ -7,9 +7,6 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
     restart: unless-stopped
-    environment:
-     - GF_AUTH_GENERIC_OAUTH_ENABLED=false
-     - GF_AUTH_DISABLE_LOGIN_FORM=false
     networks:
       - monitoring-net
       - auth-net
