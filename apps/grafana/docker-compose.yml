@@ -10,9 +10,6 @@ services:
     networks:
       - monitoring-net
       - auth-net
-    environment:
-      - GF_AUTH_GENERIC_OAUTH_ENABLED=false
-      - GF_AUTH_DISABLE_LOGIN_FORM=false
     labels:
       glance.name: Monitoring
       glance.icon: si:grafana
