@@ -15,6 +15,9 @@ sops:
 stacks: {}
 
 networks:
+  affine-net:
+    driver: bridge
+
   arr-net:
     driver: bridge
 

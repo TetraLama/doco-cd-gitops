@@ -1,3 +1,8 @@
+name: affine
+working_dir: apps/affine
+compose_files: 
+  - docker-compose.yml
+---
 name: alertmanager
 working_dir: apps/alertmanager
 compose_files: 
