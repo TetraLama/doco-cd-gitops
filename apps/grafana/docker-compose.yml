@@ -8,7 +8,9 @@ services:
       - grafana_data:/var/lib/grafana
     restart: unless-stopped
     environment:
+      - GF_SERVER_DOMAIN=grafana.lan.prairie.ovh
       - GF_SERVER_ROOT_URL=https://grafana.lan.prairie.ovh
+      - GF_SERVER_SERVE_FROM_SUB_PATH=false
     networks:
       - monitoring-net
       - auth-net
