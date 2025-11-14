@@ -62,10 +62,13 @@ services:
       - /opt/docker-data/affine/postgres:/var/lib/postgresql/data
     healthcheck:
       test:
-        test: ["CMD-SHELL", "pg_isready", "-U", "$$POSTGRES_USER", "-d", "$${POSTGRES_DB:-affine}"]
+        ["CMD", "pg_isready", "-U", "$$POSTGRES_USER", "-d", "$$POSTGRES_DB"]
       interval: 10s
       timeout: 5s
       retries: 5
+    env_file:
+      - secrets.postgres.enc.env
+      - postgres.env
     restart: unless-stopped
 
 networks:
