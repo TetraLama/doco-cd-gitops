@@ -7,6 +7,8 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
     restart: unless-stopped
+    environment:
+      - GF_SERVER_ROOT_URL=https://grafana.lan.prairie.ovh
     networks:
       - monitoring-net
       - auth-net
