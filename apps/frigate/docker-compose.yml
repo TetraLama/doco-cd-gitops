@@ -10,6 +10,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /opt/docker-data/frigate:/config
       - /mnt/zfs/lamapound/videos/recording:/media/frigate/recordings
+      - ./config/config.yaml:/config.yaml
       - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
         target: /tmp/cache
         tmpfs:
@@ -21,8 +22,8 @@ services:
       - "8555:8555/tcp" # WebRTC over tcp
       - "8555:8555/udp" # WebRTC over udp
     env_file:
-      - env-frigate
-      - secrets.enc.env
+      - frigate.env
+      - secrets.frigate.enc.env
     networks:
       - smart-home-net
     deploy:    # <------------- Add this section
