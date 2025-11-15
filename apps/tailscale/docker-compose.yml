@@ -1,18 +1,18 @@
 services:
   tailscale:
-    image: tailscale/tailscale:latest
+    image: ghcr.io/tailscale/tailscale:latest
     hostname: ts-zserv
     container_name: ts-zserv
     restart: unless-stopped
     environment:
       #- TS_EXTRA_ARGS=--advertise-tags=tag:server --advertise-routes=192.168.100.0/22,192.168.202.0/24
-      - TS_EXTRA_ARGS=--advertise-tags=tag:server
+      - TS_EXTRA_ARGS=--advertise-tags=tag:server --advertise-tags=tag:container
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_USERSPACE=false
     env_file:
       - secrets.tailscale.enc.env
     volumes:
-      - ./data/state:/var/lib/tailscale
+      - /opt/docker-data/tailscale:/var/lib/tailscale
     devices:
       - /dev/net/tun:/dev/net/tun
     cap_add:
