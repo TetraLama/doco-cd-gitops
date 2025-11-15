@@ -1,17 +1,16 @@
 mqtt:
   host: mqtt://mosquitto  # Remplacez par l'IP de votre broker MQTT
-  user: frigate
-  password: iO50gctt5HO8Bl
+  user: '{FRIGATE_MQTT_USER}'
+  password: '{FRIGATE_MQTT_PASSWORD}'
   topic_prefix: frigate
   client_id: frigate
 
 go2rtc:
   streams:
     e1zoom:
-      - ffmpeg:http://192.168.11.245/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_RTSP_USER}&password={FRIGATE_RTSP_PASSWORD}#video=copy#audio=copy#audio=opus
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.11.245:554/h264Preview_01_main
     e1zoom_sub:
-      - ffmpeg:http://192.168.11.245/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_RTSP_USER}&password={FRIGATE_RTSP_PASSWORD}
-
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.11.245:554/h264Preview_01_sub
 
 cameras:
   e1zoom:
@@ -36,10 +35,10 @@ cameras:
       enabled: true
       retain:
         days: 0
-
-      alerts:
+        mode: all
+      events:
         retain:
-          days: 30
+          default: 30
           mode: motion
 
     snapshots:
@@ -50,10 +49,12 @@ cameras:
         default: 2
         objects:
           person: 7
+          
     motion:
       mask: 0.719,0.063,0.288,0.062,0.291,0.006,0.721,0.002
+      
     objects:
       mask: 0.255,0.808,0.135,0.805,0.136,0.746,0.248,0.74
-version: 0.16-0
+
 detect:
   enabled: true
