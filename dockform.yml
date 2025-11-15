@@ -16,48 +16,20 @@ stacks: {}
 
 networks:
   affine-net:
-    driver: bridge
-
   arr-net:
-    driver: bridge
-
   auth-net:
-    driver: bridge
-
   dozzle-net:
-    driver: bridge
-
   glance-net:
-    driver: bridge
-
   immich-net:
-    driver: bridge
-
+  ironmount-net:
   jellyfin-net:
-    driver: bridge
-
   kavita-net:
-    driver: bridge
-  
   komga-net:
-    driver: bridge
-    
   linkwarden-net:
-    driver: bridge
-
   monitoring-net:
-    driver: bridge
-  
   nextcloud-net:
-    driver: bridge
-  
   smart-home-net:
-    driver: bridge
-
   seafile-net:
-    driver: bridge
-
   termix-net:
-    driver: bridge
 
 filesets: {}

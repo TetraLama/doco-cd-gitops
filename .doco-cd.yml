@@ -48,6 +48,11 @@ working_dir: apps/immich
 compose_files: 
   - docker-compose.yml
 ---
+name: ironmount
+working_dir: apps/ironmount
+compose_files: 
+  - docker-compose.yml
+---
 name: jellyfin
 working_dir: apps/jellyfin
 compose_files: 

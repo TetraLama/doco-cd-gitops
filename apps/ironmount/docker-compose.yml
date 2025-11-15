@@ -1,0 +1,22 @@
+services:
+  ironmount:
+    image: ghcr.io/nicotsx/ironmount:v0.8
+    container_name: ironmount
+    restart: unless-stopped
+    networks:
+      - ironmount-net
+    cap_add:
+      - SYS_ADMIN
+    # ports:
+    #   - "4096:4096"
+    devices:
+      - /dev/fuse:/dev/fuse
+    volumes:
+      - /var/lib/ironmount:/var/lib/ironmount
+      - /mnt/zfs/lamapound:/mnt/zfs/lamapound
+      - /mnt/external:/mnt/external
+      - /home:/mnt/home
+
+networks:
+  ironmount-net:
+    external: true
