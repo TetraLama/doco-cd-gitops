@@ -54,19 +54,19 @@ services:
     - /opt/docker-data/authentik/certs:/certs
     - /opt/docker-data/authentik/custom-templates:/templates
 
-  # authentik-ldap:
-  #       image: ${AUTHENTIK_OUTPUT_LDAP_IMAGE:-ghcr.io/goauthentik/ldap}:${AUTHENTIK_TAG:-2025.10.1}
-  #       # Optionally specify the container's network, which must be able to reach the core authentik server.
-  #       # networks:
-  #       #   - foo
-  #       # ports:
-  #       #     - 389:3389
-  #       #     - 636:6636
-  #       networks:
-  #         - auth-net
-  #       env_file:
-  #           - secrets.ldap.enc.env
-  #           - env-ldap
+  authentik-ldap:
+        image: ${AUTHENTIK_OUTPUT_LDAP_IMAGE:-ghcr.io/goauthentik/ldap}:${AUTHENTIK_TAG:-2025.10.1}
+        # Optionally specify the container's network, which must be able to reach the core authentik server.
+        # networks:
+        #   - foo
+        # ports:
+        #     - 389:3389
+        #     - 636:6636
+        networks:
+          - auth-net
+        env_file:
+            - secrets.ldap.enc.env
+            - env-ldap
             
             
 
