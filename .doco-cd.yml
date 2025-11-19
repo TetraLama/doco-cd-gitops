@@ -98,11 +98,6 @@ working_dir: apps/sonarr
 compose_files: 
   - docker-compose.yml
 ---
-name: stump
-working_dir: apps/stump
-compose_files: 
-  - docker-compose.yml
----
 name: tailscale
 working_dir: apps/tailscale
 compose_files: 
