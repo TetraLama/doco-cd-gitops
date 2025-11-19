@@ -9,7 +9,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /opt/docker-data/frigate:/config
-      - /mnt/zfs/lamapound/videos/recording:/media/frigate/recordings
+      - /mnt/zfs/lamapound/medias/videos/recording:/media/frigate/recordings
       - ./config/config.yaml:/config/config.yaml
       - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
         target: /tmp/cache
