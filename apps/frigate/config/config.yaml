@@ -34,8 +34,8 @@ cameras:
     record:
       enabled: true
       retain:
-        days: 0
-        mode: all
+        days: 3
+        mode: motion
       events:
         retain:
           default: 30
