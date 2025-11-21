@@ -3,9 +3,7 @@ services:
         image: jvmilazz0/kavita:latest    # Using the stable branch from the official dockerhub repo.
         container_name: kavita
         volumes:
-            - /mnt/zfs/lamapound/medias/mangas:/manga
-            - /mnt/zfs/lamapound/medias/comics:/comics
-            - /mnt/zfs/lamapound/medias/books:/books
+            - /mnt/zfs/lamapound/medias:/mnt/zfs/lamapound/medias
             - /opt/docker-data/kavita:/kavita/config     # /kavita/config must not be changed
         environment:
             - TZ=Europe/Paris
